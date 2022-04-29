@@ -1,5 +1,6 @@
 import { Logo } from '~/components'
-import { ContainerContent } from '../container-content'
+
+import { ContainerContent } from '~/layouts'
 
 import * as S from './styles'
 
