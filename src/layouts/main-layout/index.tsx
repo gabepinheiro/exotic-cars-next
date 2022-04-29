@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Header } from '~/layouts'
+import { Header, ContainerContent } from '~/layouts'
 import * as S from './styles'
 
 type MainLayoutProps = {
@@ -9,8 +9,10 @@ type MainLayoutProps = {
 export const MainLayout = ({ children }: MainLayoutProps) => (
   <S.LayoutWrapper>
     <Header />
-    <S.MainContent>
-      {children}
-    </S.MainContent>
+      <S.MainContent>
+        <ContainerContent>
+          {children}
+        </ContainerContent>
+      </S.MainContent>
   </S.LayoutWrapper>
 )
