@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "prepare:husky": "husky install",
-    "lint": "eslint  --ext ts,tsx --config .eslintrc.json",
+    "lint": "eslint src --ext ts,tsx --config .eslintrc.json",
     "lint:fix": "yarn lint --fix",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit"
   },
