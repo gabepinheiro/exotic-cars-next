@@ -20,7 +20,9 @@ export const Header = () => {
           <MenuIcon size={22} onClick={handleToggleOpenMenu} />
         </Mobile>
 
+      <S.LogoWrapper>
         <Logo />
+      </S.LogoWrapper>
 
         <Desktop>
           <SearchBar />

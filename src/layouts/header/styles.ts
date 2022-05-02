@@ -7,6 +7,8 @@ export const HeaderWrapper = styled.header`
     background-color: ${theme.colors.background};
     height: 8.5rem;
     box-shadow: 0px 10px 30px #0000001A;
+    position: relative;
+    z-index: 1;
 
     ${ContainerContent} {
       display: flex;
@@ -17,6 +19,15 @@ export const HeaderWrapper = styled.header`
       }
     }
   `}
+`
+
+export const LogoWrapper = styled.div`
+  @media (max-width: 786px) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `
 
 export const ButtonsWrapper = styled.div`
