@@ -1,5 +1,4 @@
-export type CarColor = {
-  id: string
+export type CarColorProps = {
   color: string
   image: string
 }
@@ -14,5 +13,5 @@ export type Car = {
     amount: number
     per: string
   }
-  colors: CarColor[]
+  colors: CarColorProps[]
 }
