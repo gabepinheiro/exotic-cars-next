@@ -1,7 +1,4 @@
-import { Logo } from '~/components'
-import { SearchBar } from '~/components/search-bar'
-import { Button } from '~/components/ui/button'
-
+import { Logo, Button, SearchBar } from '~/components'
 import { ContainerContent } from '~/layouts'
 
 import * as S from './styles'
