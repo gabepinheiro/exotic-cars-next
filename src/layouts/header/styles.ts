@@ -18,3 +18,8 @@ export const HeaderWrapper = styled.header`
     }
   `}
 `
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  gap: 1.8rem;
+`

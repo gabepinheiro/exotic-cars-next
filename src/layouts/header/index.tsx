@@ -9,8 +9,10 @@ export const Header = () => (
   <S.HeaderWrapper>
     <ContainerContent>
       <Logo />
-      <Button>Sign up</Button>
-      <Button variant='outlined'>Sign in</Button>
+      <S.ButtonsWrapper>
+        <Button>Sign up</Button>
+        <Button variant='outlined'>Sign in</Button>
+      </S.ButtonsWrapper>
     </ContainerContent>
   </S.HeaderWrapper>
 )
