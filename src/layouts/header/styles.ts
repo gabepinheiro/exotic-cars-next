@@ -5,7 +5,7 @@ import { ContainerContent } from '~/layouts'
 export const HeaderWrapper = styled.header`
   ${({ theme }) => css`
     background-color: ${theme.colors.background};
-    height: 8.5rem;
+    padding: 25px 0;
     box-shadow: 0px 10px 30px #0000001A;
     position: relative;
     z-index: 1;
