@@ -9,6 +9,7 @@ export type Car = {
   model: string
   brandImage: string
   thumb: string
+  slug: string
   rent: {
     amount: number
     per: string

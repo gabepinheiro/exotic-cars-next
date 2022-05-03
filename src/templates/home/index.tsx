@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import Link from 'next/link'
+import { Fragment } from 'react'
 import { CardCard } from '~/components'
 import { Car } from '~/resources'
 
@@ -14,7 +16,13 @@ export const HomeTemplate = ({ cars }: HomeTemplateProps) => (
       <title>Exotic Cars</title>
     </Head>
     <S.Wrapper>
-      {cars.map(({ id, ...props }) => <CardCard key={id} {...props} />)}
+      {cars.map((car) => (
+        <Fragment key={car.id}>
+          <Link href={`/car/${car.slug}`} passHref>
+            <a><CardCard {...car} /></a>
+          </Link>
+        </Fragment>
+      ))}
     </S.Wrapper>
   </>
 )
