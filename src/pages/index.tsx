@@ -1,7 +1,5 @@
 import { GetStaticProps } from 'next'
-import { client } from '~/graphql/client'
-import { GetCarsQuery } from '~/graphql/generated/graphql'
-import { GET_CARS } from '~/graphql/queries'
+import { client, GetCarsQuery, GET_CARS } from '~/graphql'
 import { Car } from '~/resources'
 import { HomeTemplate } from '~/templates/home'
 

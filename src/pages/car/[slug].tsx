@@ -1,8 +1,12 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { client } from '~/graphql/client'
-import { GetCarBySlugQuery, GetCarsQuery } from '~/graphql/generated/graphql'
-import { GET_CARS, GET_CAR_BY_SLUG } from '~/graphql/queries'
+import {
+  client,
+  GetCarBySlugQuery,
+  GetCarsQuery,
+  GET_CARS,
+  GET_CAR_BY_SLUG,
+} from '~/graphql'
 import { Car } from '~/resources'
 import { CarDetailsTemplate } from '~/templates'
 
