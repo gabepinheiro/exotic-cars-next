@@ -1,4 +1,5 @@
 import { Car } from '~/resources/types'
+import { getCurrencyFormatted } from '~/utils'
 
 import * as S from './styles'
 
@@ -21,7 +22,7 @@ export const CardCard = (car: CardCardProps) => (
         <S.Thumb src={car.thumb} alt={`${car.brand} ${car.model}`} />
       </S.ThumbWrapper>
       <S.Rent>
-        {car.rent.amount}
+        {getCurrencyFormatted(car.rent.amount)}
         <span>/{car.rent.per}</span>
       </S.Rent>
   </S.CardWrapper>

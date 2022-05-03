@@ -4,6 +4,7 @@ import { Car } from '~/resources'
 import { ButtonLink } from '~/components'
 
 import * as S from './styles'
+import { getCurrencyFormatted } from '~/utils'
 
 const CarSlider = dynamic(() => import('~/components/car-slider'), { ssr: false })
 
@@ -33,7 +34,9 @@ export const CarDetailsTemplate = ({ car }: Props) => {
             />
             <S.BrandModelRentWrapper>
               <S.BrandModel>{car.brand} {car.model}</S.BrandModel>
-              <S.Rent>{car.rent.amount}/{car.rent.per}</S.Rent>
+              <S.Rent>
+                {getCurrencyFormatted(car.rent.amount)}/{car.rent.per}
+              </S.Rent>
             </S.BrandModelRentWrapper>
           </S.CarInfo>
           <S.CarImageWrapper>
