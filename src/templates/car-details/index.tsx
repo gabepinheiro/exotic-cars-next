@@ -1,5 +1,6 @@
 import { useCallback, useState, useMemo } from 'react'
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
 import { Car } from '~/resources'
 import { ButtonLink } from '~/components'
 
@@ -25,49 +26,48 @@ export const CarDetailsTemplate = ({ car }: Props) => {
 
   return (
     <S.Wrapper>
-      {car && (
-        <>
-          <S.CarInfo>
-            <S.BrandImage
-              src={car.brandImage}
-              alt={`${car.brand} ${car.model}`}
-            />
-            <S.BrandModelRentWrapper>
-              <S.BrandModel>{car.brand} {car.model}</S.BrandModel>
-              <S.Rent>
-                {getCurrencyFormatted(car.rent.amount)}/{car.rent.per}
-              </S.Rent>
-            </S.BrandModelRentWrapper>
-          </S.CarInfo>
-          <S.CarImageWrapper>
-            <ButtonLink
-              href='/'
-              reverse='true'
-              variant='outlined'
-            >
-              Back to catalog
-            </ButtonLink>
-            <S.CarImage
-              src={car.colors[carColorIndex].image}
-              alt={car.model}
-            />
-            <S.Color>
-              <span>{String(carColorIndex + 1).padStart(2, '0')}</span>
-              <span className='colorName'>{car.colors[carColorIndex].color}</span>
-            </S.Color>
-          </S.CarImageWrapper>
-          <S.Center>
-            <ButtonLink href='#'>Book now</ButtonLink>
-          </S.Center>
+      <Head>
+        <title>{car.brand} - {car.model}</title>
+      </Head>
+      <S.CarInfo>
+        <S.BrandImage
+          src={car.brandImage}
+          alt={`${car.brand} ${car.model}`}
+        />
+        <S.BrandModelRentWrapper>
+          <S.BrandModel>{car.brand} {car.model}</S.BrandModel>
+          <S.Rent>
+            {getCurrencyFormatted(car.rent.amount)}/{car.rent.per}
+          </S.Rent>
+        </S.BrandModelRentWrapper>
+      </S.CarInfo>
+      <S.CarImageWrapper>
+        <ButtonLink
+          href='/'
+          reverse='true'
+          variant='outlined'
+        >
+          Back to catalog
+        </ButtonLink>
+        <S.CarImage
+          src={car.colors[carColorIndex].image}
+          alt={car.model}
+        />
+        <S.Color>
+          <span>{String(carColorIndex + 1).padStart(2, '0')}</span>
+          <span className='colorName'>{car.colors[carColorIndex].color}</span>
+        </S.Color>
+      </S.CarImageWrapper>
+      <S.Center>
+        <ButtonLink href='#'>Book now</ButtonLink>
+      </S.Center>
 
-          <S.SliderWrapper>
-            <CarSlider
-              items={slideItems}
-              onChangeColorIndex={handleChangeColorIndex}
-            />
-          </S.SliderWrapper>
-        </>
-      )}
+      <S.SliderWrapper>
+        <CarSlider
+          items={slideItems}
+          onChangeColorIndex={handleChangeColorIndex}
+        />
+      </S.SliderWrapper>
     </S.Wrapper>
   )
 }
