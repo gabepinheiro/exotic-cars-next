@@ -26,3 +26,30 @@ export const GET_CARS = gql`
     }
   }
 `
+
+export const GET_CAR_BY_SLUG = gql`
+  query getCarBySlug($slug: String!) {
+    car(where: { slug: $slug }) {
+      id
+      brand
+      model
+      slug
+      brandImage {
+        url
+      }
+      thumb {
+        url
+      }
+      rent {
+        amount
+        per
+      }
+      colors {
+        color
+        image {
+          url
+        }
+      }
+    }
+  }
+`

@@ -4210,3 +4210,10 @@ export type GetCarsQueryVariables = Exact<{
 
 
 export type GetCarsQuery = { __typename?: 'Query', cars: Array<{ __typename?: 'Car', id: string, brand: Brand, model: string, slug: string, brandImage: { __typename?: 'Asset', url: string }, thumb: { __typename?: 'Asset', url: string }, rent: { __typename?: 'Rent', amount: number, per: string }, colors: Array<{ __typename?: 'CarColor', color: string, image: { __typename?: 'Asset', url: string } }> }> };
+
+export type GetCarBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type GetCarBySlugQuery = { __typename?: 'Query', car?: { __typename?: 'Car', id: string, brand: Brand, model: string, slug: string, brandImage: { __typename?: 'Asset', url: string }, thumb: { __typename?: 'Asset', url: string }, rent: { __typename?: 'Rent', amount: number, per: string }, colors: Array<{ __typename?: 'CarColor', color: string, image: { __typename?: 'Asset', url: string } }> } | null };
