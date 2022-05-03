@@ -9,6 +9,7 @@ import {
 } from '~/graphql'
 import { Car } from '~/resources'
 import { CarDetailsTemplate } from '~/templates'
+import { LoadingOverlay } from '~/components'
 
 type PageProps = {
   car: Car
@@ -22,7 +23,7 @@ const CarDetailsPage: NextPage<PageProps> = ({ car }) => {
   const router = useRouter()
 
   if (router.isFallback) {
-    return <p>Loading...</p>
+    return <LoadingOverlay />
   }
 
   return <CarDetailsTemplate car={car} />
