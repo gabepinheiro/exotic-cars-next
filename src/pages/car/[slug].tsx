@@ -4,6 +4,7 @@ import { client } from '~/graphql/client'
 import { GetCarBySlugQuery, GetCarsQuery } from '~/graphql/generated/graphql'
 import { GET_CARS, GET_CAR_BY_SLUG } from '~/graphql/queries'
 import { Car } from '~/resources'
+import { CarDetailsTemplate } from '~/templates'
 
 type PageProps = {
   car: Car
@@ -20,7 +21,7 @@ const CarDetailsPage: NextPage<PageProps> = ({ car }) => {
     return <p>Loading...</p>
   }
 
-  return <h1>{car.brand} - {car.model}</h1>
+  return <CarDetailsTemplate car={car} />
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
