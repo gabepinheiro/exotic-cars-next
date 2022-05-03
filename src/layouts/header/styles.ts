@@ -22,6 +22,11 @@ export const HeaderWrapper = styled.header`
 `
 
 export const LogoWrapper = styled.div`
+  a {
+    text-decoration: none;
+    color: currentColor;
+  }
+
   @media (max-width: 786px) {
     position: absolute;
     top: 50%;

@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import Link from 'next/link'
+import { ContainerContent } from '~/layouts'
 import { Logo, Button, SearchBar, Mobile, Desktop } from '~/components'
 import { AiOutlineMenu as MenuIcon } from 'react-icons/ai'
 import { GrClose as CloseIcon } from 'react-icons/gr'
-import { ContainerContent } from '~/layouts'
 
 import * as S from './styles'
 
@@ -21,7 +22,9 @@ export const Header = () => {
         </Mobile>
 
       <S.LogoWrapper>
-        <Logo />
+        <Link href='/' passHref>
+          <a><Logo /></a>
+        </Link>
       </S.LogoWrapper>
 
         <Desktop>
