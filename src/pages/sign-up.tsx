@@ -1,5 +1,7 @@
+import { SignUpTemplate } from '~/templates'
+
 const SignUpPage = () => (
-  <h1>Sign-up Page</h1>
+  <SignUpTemplate />
 )
 
 export default SignUpPage
