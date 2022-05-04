@@ -1,5 +1,7 @@
+import { SignInTemplate } from '~/templates'
+
 const SignInPage = () => (
-  <h1>Sign-in Page</h1>
+  <SignInTemplate />
 )
 
 export default SignInPage
