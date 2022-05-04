@@ -1,9 +1,12 @@
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
 import {
   SignInFormData,
   SignUpFormData,
   isAnSignUpFormData,
+  schemaSignIn,
+  schemaSignUp,
 } from '~/resources'
 import { Input, Button } from '~/components'
 
@@ -19,8 +22,10 @@ export const Form = ({
   signIn = false,
   ...props
 }: FormProps) => {
-  const { handleSubmit, register } =
-    useForm<OnSubmitFormData>()
+  const { handleSubmit, register, formState: { errors } } =
+    useForm<OnSubmitFormData>({
+      resolver: yupResolver(signIn ? schemaSignIn : schemaSignUp),
+    })
 
   const onSubmit = (data: OnSubmitFormData) => {
     if (isAnSignUpFormData(data)) {
@@ -30,21 +35,54 @@ export const Form = ({
     console.dir(data)
   }
 
+  useEffect(() => {
+    if ('confirmPassword' in errors) {
+      errors.name && alert(errors.name.message)
+      errors.confirmPassword && alert(errors.confirmPassword.message)
+    }
+
+    errors.email && alert(errors.email.message)
+    errors.password && alert(errors.password.message)
+  }, [errors])
+
   return (
     <S.FormWrapper onSubmit={handleSubmit(onSubmit)} {...props}>
       {signIn && (
         <S.Inputs>
-          <Input placeholder='Email' {...register('email')} />
-          <Input placeholder='Password' {...register('password')} />
+          <Input
+            type='email'
+            required
+            placeholder='Email'
+            {...register('email')}
+          />
+          <Input
+            type='password'
+            required
+            placeholder='Password'
+            {...register('password')}
+          />
       </S.Inputs>
       )}
 
       {!signIn && (
         <S.Inputs>
-          <Input placeholder='Name' {...register('name')} />
-          <Input placeholder='Email' {...register('email')} />
-          <Input placeholder='Password' {...register('password')} />
-          <Input placeholder='Confirm password' {...register('confirmPassword')} />
+          <Input required placeholder='Name' {...register('name')} />
+          <Input
+            required
+            type='email'
+            placeholder='Email'
+            {...register('email')}
+          />
+          <Input
+            type='password'
+            placeholder='Password'
+            {...register('password')}
+          />
+          <Input
+            type='password'
+            placeholder='Confirm password'
+            {...register('confirmPassword')}
+          />
       </S.Inputs>
       )}
 
