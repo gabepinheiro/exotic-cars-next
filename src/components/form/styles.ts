@@ -2,7 +2,8 @@ import styled, { css } from 'styled-components'
 
 export const FormWrapper = styled.form`
   ${({ theme }) => css`
-    width: min(430px);
+    max-width: 100%;
+    width: max(430px);
     border: 1px solid ${theme.colors.primary};
     border-radius: 1.4rem;
     padding: 2.4rem;

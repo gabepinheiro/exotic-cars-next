@@ -2,10 +2,12 @@ import styled, { css } from 'styled-components'
 
 type Colors = 'primary'
 type VariantsButtons = 'text' | 'outlined' | 'contained'
+type Sizes = 'small' | 'medium'
 
 type ButtonProps = {
   color?: Colors
   variant?: VariantsButtons
+  size?: Sizes
 }
 
 const Variants = {
@@ -23,26 +25,33 @@ const Variants = {
         color: #fff;
     `}
   `,
+  small: () => css`
+    height: 3.6rem;
+    padding: 0 1.6rem;
+  `,
+  medium: () => css`
+    height: 4.8rem;
+    padding: 0 2.8rem;
+  `,
 }
 
 export const Button = styled.button<ButtonProps>`
-  ${({ theme, color = 'primary', variant = 'text' }) => css`
+  ${({ theme, color = 'primary', variant = 'text', size = 'small' }) => css`
     background-color: transparent;
     border: 0;
     border-radius: 1.2rem;
     color: ${theme.colors[color]};
-    height: 3.6rem;
-    padding: 0 1.6rem;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
     transition: all 0.2s ease-in-out;
 
-    ${!!variant && Variants[variant]};
-
     &:hover {
       opacity: 0.7;
     }
+
+    ${!!variant && Variants[variant]};
+    ${!!size && Variants[size]};
   `}
 `

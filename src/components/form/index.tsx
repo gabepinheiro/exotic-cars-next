@@ -28,7 +28,7 @@ export const Form = ({
      </S.Inputs>
     )}
 
-    <Button variant='contained'>
+    <Button size='medium' variant='contained'>
       {signIn ? 'Sign In' : 'Sign Up'}
     </Button>
   </S.FormWrapper>
