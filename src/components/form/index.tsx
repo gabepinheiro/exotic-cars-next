@@ -9,6 +9,7 @@ import {
   schemaSignUp,
 } from '~/resources'
 import { Input, Button } from '~/components'
+import { toast } from 'react-toastify'
 
 import * as S from './styles'
 
@@ -37,12 +38,12 @@ export const Form = ({
 
   useEffect(() => {
     if ('confirmPassword' in errors) {
-      errors.name && alert(errors.name.message)
-      errors.confirmPassword && alert(errors.confirmPassword.message)
+      errors.name && toast.error(errors.name.message)
+      errors.confirmPassword && toast.error(errors.confirmPassword.message)
     }
 
-    errors.email && alert(errors.email.message)
-    errors.password && alert(errors.password.message)
+    errors.email && toast.error(errors.email.message)
+    errors.password && toast.error(errors.password.message)
   }, [errors])
 
   return (
