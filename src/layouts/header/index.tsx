@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { ContainerContent } from '~/layouts'
 import { Logo, Button, SearchBar, Mobile, Desktop } from '~/components'
 import { AiOutlineMenu as MenuIcon } from 'react-icons/ai'
@@ -9,9 +10,20 @@ import * as S from './styles'
 
 export const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false)
+  const router = useRouter()
 
   const handleToggleOpenMenu = () => {
     setIsOpenMenu(state => !state)
+  }
+
+  const handleNavigateSignUp = () => {
+    router.replace('/sign-up')
+    setIsOpenMenu(false)
+  }
+
+  const handleNavigateSignIn = () => {
+    router.replace('/sign-in')
+    setIsOpenMenu(false)
   }
 
   return (
@@ -32,8 +44,10 @@ export const Header = () => {
         </Desktop>
         <Desktop>
           <S.ButtonsWrapper>
-            <Button>Sign up</Button>
-            <Button variant='outlined'>Sign in</Button>
+            <Button onClick={handleNavigateSignUp}>Sign up</Button>
+            <Button variant='outlined' onClick={handleNavigateSignIn}>
+              Sign in
+            </Button>
           </S.ButtonsWrapper>
         </Desktop>
 
@@ -46,8 +60,10 @@ export const Header = () => {
               <SearchBar />
 
               <S.ButtonsWrapper>
-                <Button>Sign in</Button>
-                <Button variant='outlined'>Sign up</Button>
+                <Button onClick={handleNavigateSignUp}>Sign up</Button>
+                <Button variant='outlined' onClick={handleNavigateSignIn}>
+                  Sign in
+                </Button>
               </S.ButtonsWrapper>
             </S.MenuFull>
           </Mobile>
