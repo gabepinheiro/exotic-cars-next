@@ -1,4 +1,5 @@
 import { HTMLAttributes, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {
@@ -23,14 +24,31 @@ export const Form = ({
   signIn = false,
   ...props
 }: FormProps) => {
+  const router = useRouter()
+
   const { handleSubmit, register, formState: { errors } } =
     useForm<OnSubmitFormData>({
       resolver: yupResolver(signIn ? schemaSignIn : schemaSignUp),
     })
 
-  const onSubmit = (data: OnSubmitFormData) => {
+  const onSubmit = async (data: OnSubmitFormData) => {
     if (isAnSignUpFormData(data)) {
-      return console.dir(data)
+      const res = await fetch('/api/auth/sign-up', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await res.json()
+
+      if (!res.ok) {
+        return toast.error(result.message)
+      }
+
+      toast.success(result.message)
+      router.replace('/sign-in')
     }
 
     console.dir(data)
