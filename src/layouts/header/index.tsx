@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import Link from 'next/link'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { ContainerContent } from '~/layouts'
 import { Logo, Button, SearchBar, Mobile, Desktop } from '~/components'
 import { AiOutlineMenu as MenuIcon } from 'react-icons/ai'
@@ -9,6 +10,7 @@ import { GrClose as CloseIcon } from 'react-icons/gr'
 import * as S from './styles'
 
 export const Header = () => {
+  const { data: session, status } = useSession()
   const [isOpenMenu, setIsOpenMenu] = useState(false)
   const router = useRouter()
 
@@ -43,12 +45,16 @@ export const Header = () => {
           <SearchBar />
         </Desktop>
         <Desktop>
+        {status === 'loading' && <p>Loading...</p>}
+        {status === 'unauthenticated' && (
           <S.ButtonsWrapper>
             <Button onClick={handleNavigateSignUp}>Sign up</Button>
             <Button variant='outlined' onClick={handleNavigateSignIn}>
               Sign in
             </Button>
           </S.ButtonsWrapper>
+        )}
+        {status === 'authenticated' && <p>Olá, {session?.user?.name}</p>}
         </Desktop>
 
         <Mobile>

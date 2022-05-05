@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import { SessionProvider } from 'next-auth/react'
 
 import { ThemeProvider } from 'styled-components'
 import { ScrollTopButton } from '~/components'
@@ -8,16 +9,18 @@ import { theme, GlobalStyles } from '~/styles'
 
 import 'react-toastify/dist/ReactToastify.css'
 
-function MyApp ({ Component, pageProps }: AppProps) {
+function MyApp ({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <MainLayout>
-        <Component {...pageProps} />
-      </MainLayout>
-      <ToastContainer />
-      <ScrollTopButton />
-    </ThemeProvider>
+    <SessionProvider session={session}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
+        <ToastContainer />
+        <ScrollTopButton />
+      </ThemeProvider>
+    </SessionProvider>
   )
 }
 
