@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { ContainerContent } from '~/layouts'
-import { Logo, Button, SearchBar, Mobile, Desktop } from '~/components'
+import { Logo, Button, SearchBar, Mobile, Desktop, Flex } from '~/components'
 import { AiOutlineMenu as MenuIcon } from 'react-icons/ai'
 import { GrClose as CloseIcon } from 'react-icons/gr'
 
@@ -26,6 +26,10 @@ export const Header = () => {
   const handleNavigateSignIn = () => {
     router.replace('/sign-in')
     setIsOpenMenu(false)
+  }
+
+  const handleSignOut = () => {
+    signOut()
   }
 
   return (
@@ -54,7 +58,12 @@ export const Header = () => {
             </Button>
           </S.ButtonsWrapper>
         )}
-        {status === 'authenticated' && <p>Olá, {session?.user?.name}</p>}
+        {status === 'authenticated' && (
+          <Flex gap={24} alignItems='center'>
+            <p>Olá, {session?.user?.name}</p>
+            <Button variant='contained' onClick={handleSignOut}>Sign out</Button>
+          </Flex>
+        )}
         </Desktop>
 
         <Mobile>
