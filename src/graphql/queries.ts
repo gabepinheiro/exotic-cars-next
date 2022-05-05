@@ -53,3 +53,12 @@ export const GET_CAR_BY_SLUG = gql`
     }
   }
 `
+
+export const CREATE_USER = gql`
+  mutation CreateExoticUser($data: ExoticUserCreateInput!) {
+    user: createExoticUser(data: $data) {
+      id
+      email
+    }
+  }
+`

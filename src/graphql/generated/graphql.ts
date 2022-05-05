@@ -1663,6 +1663,494 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
+export type ExoticUser = Node & {
+  __typename?: 'ExoticUser';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<ExoticUser>;
+  email: Scalars['String'];
+  /** List of ExoticUser versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  password: Scalars['String'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type ExoticUserCreatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ExoticUserDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type ExoticUserHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ExoticUserPublishedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ExoticUserScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type ExoticUserUpdatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type ExoticUserConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ExoticUserWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ExoticUserConnection = {
+  __typename?: 'ExoticUserConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ExoticUserEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ExoticUserCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  email: Scalars['String'];
+  name: Scalars['String'];
+  password: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ExoticUserCreateManyInlineInput = {
+  /** Connect multiple existing ExoticUser documents */
+  connect?: InputMaybe<Array<ExoticUserWhereUniqueInput>>;
+  /** Create and connect multiple existing ExoticUser documents */
+  create?: InputMaybe<Array<ExoticUserCreateInput>>;
+};
+
+export type ExoticUserCreateOneInlineInput = {
+  /** Connect one existing ExoticUser document */
+  connect?: InputMaybe<ExoticUserWhereUniqueInput>;
+  /** Create and connect one ExoticUser document */
+  create?: InputMaybe<ExoticUserCreateInput>;
+};
+
+/** An edge in a connection. */
+export type ExoticUserEdge = {
+  __typename?: 'ExoticUserEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: ExoticUser;
+};
+
+/** Identifies documents */
+export type ExoticUserManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ExoticUserWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ExoticUserWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ExoticUserWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  email?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  email_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  email_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  email_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  email_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  email_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  email_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  email_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  email_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  email_starts_with?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  name_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars['String']>;
+  password?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  password_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  password_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  password_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  password_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  password_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  password_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  password_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  password_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  password_starts_with?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum ExoticUserOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  EmailAsc = 'email_ASC',
+  EmailDesc = 'email_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PasswordAsc = 'password_ASC',
+  PasswordDesc = 'password_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type ExoticUserUpdateInput = {
+  email?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  password?: InputMaybe<Scalars['String']>;
+};
+
+export type ExoticUserUpdateManyInlineInput = {
+  /** Connect multiple existing ExoticUser documents */
+  connect?: InputMaybe<Array<ExoticUserConnectInput>>;
+  /** Create and connect multiple ExoticUser documents */
+  create?: InputMaybe<Array<ExoticUserCreateInput>>;
+  /** Delete multiple ExoticUser documents */
+  delete?: InputMaybe<Array<ExoticUserWhereUniqueInput>>;
+  /** Disconnect multiple ExoticUser documents */
+  disconnect?: InputMaybe<Array<ExoticUserWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing ExoticUser documents */
+  set?: InputMaybe<Array<ExoticUserWhereUniqueInput>>;
+  /** Update multiple ExoticUser documents */
+  update?: InputMaybe<Array<ExoticUserUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple ExoticUser documents */
+  upsert?: InputMaybe<Array<ExoticUserUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type ExoticUserUpdateManyInput = {
+  name?: InputMaybe<Scalars['String']>;
+  password?: InputMaybe<Scalars['String']>;
+};
+
+export type ExoticUserUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ExoticUserUpdateManyInput;
+  /** Document search */
+  where: ExoticUserWhereInput;
+};
+
+export type ExoticUserUpdateOneInlineInput = {
+  /** Connect existing ExoticUser document */
+  connect?: InputMaybe<ExoticUserWhereUniqueInput>;
+  /** Create and connect one ExoticUser document */
+  create?: InputMaybe<ExoticUserCreateInput>;
+  /** Delete currently connected ExoticUser document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected ExoticUser document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single ExoticUser document */
+  update?: InputMaybe<ExoticUserUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ExoticUser document */
+  upsert?: InputMaybe<ExoticUserUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ExoticUserUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ExoticUserUpdateInput;
+  /** Unique document search */
+  where: ExoticUserWhereUniqueInput;
+};
+
+export type ExoticUserUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ExoticUserCreateInput;
+  /** Update document if it exists */
+  update: ExoticUserUpdateInput;
+};
+
+export type ExoticUserUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ExoticUserUpsertInput;
+  /** Unique document search */
+  where: ExoticUserWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type ExoticUserWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ExoticUserWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ExoticUserWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ExoticUserWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  email?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  email_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  email_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  email_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  email_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  email_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  email_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  email_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  email_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  email_starts_with?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  name_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars['String']>;
+  password?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  password_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  password_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  password_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  password_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  password_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  password_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  password_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  password_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  password_starts_with?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** References ExoticUser record uniquely */
+export type ExoticUserWhereUniqueInput = {
+  email?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export enum ImageFit {
   /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
   Clip = 'clip',
@@ -1724,12 +2212,16 @@ export type Mutation = {
   createAsset?: Maybe<Asset>;
   /** Create one car */
   createCar?: Maybe<Car>;
+  /** Create one exoticUser */
+  createExoticUser?: Maybe<ExoticUser>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
   deleteAsset?: Maybe<Asset>;
   /** Delete one car from _all_ existing stages. Returns deleted document. */
   deleteCar?: Maybe<Car>;
+  /** Delete one exoticUser from _all_ existing stages. Returns deleted document. */
+  deleteExoticUser?: Maybe<ExoticUser>;
   /**
    * Delete many Asset documents
    * @deprecated Please use the new paginated many mutation (deleteManyAssetsConnection)
@@ -1744,6 +2236,13 @@ export type Mutation = {
   deleteManyCars: BatchPayload;
   /** Delete many Car documents, return deleted documents */
   deleteManyCarsConnection: CarConnection;
+  /**
+   * Delete many ExoticUser documents
+   * @deprecated Please use the new paginated many mutation (deleteManyExoticUsersConnection)
+   */
+  deleteManyExoticUsers: BatchPayload;
+  /** Delete many ExoticUser documents, return deleted documents */
+  deleteManyExoticUsersConnection: ExoticUserConnection;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
@@ -1752,6 +2251,8 @@ export type Mutation = {
   publishAsset?: Maybe<Asset>;
   /** Publish one car */
   publishCar?: Maybe<Car>;
+  /** Publish one exoticUser */
+  publishExoticUser?: Maybe<ExoticUser>;
   /**
    * Publish many Asset documents
    * @deprecated Please use the new paginated many mutation (publishManyAssetsConnection)
@@ -1766,18 +2267,31 @@ export type Mutation = {
   publishManyCars: BatchPayload;
   /** Publish many Car documents */
   publishManyCarsConnection: CarConnection;
+  /**
+   * Publish many ExoticUser documents
+   * @deprecated Please use the new paginated many mutation (publishManyExoticUsersConnection)
+   */
+  publishManyExoticUsers: BatchPayload;
+  /** Publish many ExoticUser documents */
+  publishManyExoticUsersConnection: ExoticUserConnection;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one car */
   schedulePublishCar?: Maybe<Car>;
+  /** Schedule to publish one exoticUser */
+  schedulePublishExoticUser?: Maybe<ExoticUser>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one car from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishCar?: Maybe<Car>;
+  /** Unpublish one exoticUser from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishExoticUser?: Maybe<ExoticUser>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one car from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishCar?: Maybe<Car>;
+  /** Unpublish one exoticUser from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishExoticUser?: Maybe<ExoticUser>;
   /**
    * Unpublish many Asset documents
    * @deprecated Please use the new paginated many mutation (unpublishManyAssetsConnection)
@@ -1792,10 +2306,19 @@ export type Mutation = {
   unpublishManyCars: BatchPayload;
   /** Find many Car documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyCarsConnection: CarConnection;
+  /**
+   * Unpublish many ExoticUser documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyExoticUsersConnection)
+   */
+  unpublishManyExoticUsers: BatchPayload;
+  /** Find many ExoticUser documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyExoticUsersConnection: ExoticUserConnection;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
   /** Update one car */
   updateCar?: Maybe<Car>;
+  /** Update one exoticUser */
+  updateExoticUser?: Maybe<ExoticUser>;
   /**
    * Update many assets
    * @deprecated Please use the new paginated many mutation (updateManyAssetsConnection)
@@ -1810,12 +2333,21 @@ export type Mutation = {
   updateManyCars: BatchPayload;
   /** Update many Car documents */
   updateManyCarsConnection: CarConnection;
+  /**
+   * Update many exoticUsers
+   * @deprecated Please use the new paginated many mutation (updateManyExoticUsersConnection)
+   */
+  updateManyExoticUsers: BatchPayload;
+  /** Update many ExoticUser documents */
+  updateManyExoticUsersConnection: ExoticUserConnection;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Upsert one asset */
   upsertAsset?: Maybe<Asset>;
   /** Upsert one car */
   upsertCar?: Maybe<Car>;
+  /** Upsert one exoticUser */
+  upsertExoticUser?: Maybe<ExoticUser>;
 };
 
 
@@ -1826,6 +2358,11 @@ export type MutationCreateAssetArgs = {
 
 export type MutationCreateCarArgs = {
   data: CarCreateInput;
+};
+
+
+export type MutationCreateExoticUserArgs = {
+  data: ExoticUserCreateInput;
 };
 
 
@@ -1841,6 +2378,11 @@ export type MutationDeleteAssetArgs = {
 
 export type MutationDeleteCarArgs = {
   where: CarWhereUniqueInput;
+};
+
+
+export type MutationDeleteExoticUserArgs = {
+  where: ExoticUserWhereUniqueInput;
 };
 
 
@@ -1874,6 +2416,21 @@ export type MutationDeleteManyCarsConnectionArgs = {
 };
 
 
+export type MutationDeleteManyExoticUsersArgs = {
+  where?: InputMaybe<ExoticUserManyWhereInput>;
+};
+
+
+export type MutationDeleteManyExoticUsersConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ExoticUserManyWhereInput>;
+};
+
+
 export type MutationDeleteScheduledOperationArgs = {
   where: ScheduledOperationWhereUniqueInput;
 };
@@ -1896,6 +2453,12 @@ export type MutationPublishAssetArgs = {
 export type MutationPublishCarArgs = {
   to?: Array<Stage>;
   where: CarWhereUniqueInput;
+};
+
+
+export type MutationPublishExoticUserArgs = {
+  to?: Array<Stage>;
+  where: ExoticUserWhereUniqueInput;
 };
 
 
@@ -1941,6 +2504,24 @@ export type MutationPublishManyCarsConnectionArgs = {
 };
 
 
+export type MutationPublishManyExoticUsersArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<ExoticUserManyWhereInput>;
+};
+
+
+export type MutationPublishManyExoticUsersConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<ExoticUserManyWhereInput>;
+};
+
+
 export type MutationSchedulePublishAssetArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1957,6 +2538,14 @@ export type MutationSchedulePublishCarArgs = {
   releaseId?: InputMaybe<Scalars['String']>;
   to?: Array<Stage>;
   where: CarWhereUniqueInput;
+};
+
+
+export type MutationSchedulePublishExoticUserArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: ExoticUserWhereUniqueInput;
 };
 
 
@@ -1978,6 +2567,14 @@ export type MutationScheduleUnpublishCarArgs = {
 };
 
 
+export type MutationScheduleUnpublishExoticUserArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  where: ExoticUserWhereUniqueInput;
+};
+
+
 export type MutationUnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1989,6 +2586,12 @@ export type MutationUnpublishAssetArgs = {
 export type MutationUnpublishCarArgs = {
   from?: Array<Stage>;
   where: CarWhereUniqueInput;
+};
+
+
+export type MutationUnpublishExoticUserArgs = {
+  from?: Array<Stage>;
+  where: ExoticUserWhereUniqueInput;
 };
 
 
@@ -2032,6 +2635,24 @@ export type MutationUnpublishManyCarsConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyExoticUsersArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<ExoticUserManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyExoticUsersConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<ExoticUserManyWhereInput>;
+};
+
+
 export type MutationUpdateAssetArgs = {
   data: AssetUpdateInput;
   where: AssetWhereUniqueInput;
@@ -2041,6 +2662,12 @@ export type MutationUpdateAssetArgs = {
 export type MutationUpdateCarArgs = {
   data: CarUpdateInput;
   where: CarWhereUniqueInput;
+};
+
+
+export type MutationUpdateExoticUserArgs = {
+  data: ExoticUserUpdateInput;
+  where: ExoticUserWhereUniqueInput;
 };
 
 
@@ -2078,6 +2705,23 @@ export type MutationUpdateManyCarsConnectionArgs = {
 };
 
 
+export type MutationUpdateManyExoticUsersArgs = {
+  data: ExoticUserUpdateManyInput;
+  where?: InputMaybe<ExoticUserManyWhereInput>;
+};
+
+
+export type MutationUpdateManyExoticUsersConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: ExoticUserUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ExoticUserManyWhereInput>;
+};
+
+
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
@@ -2093,6 +2737,12 @@ export type MutationUpsertAssetArgs = {
 export type MutationUpsertCarArgs = {
   upsert: CarUpsertInput;
   where: CarWhereUniqueInput;
+};
+
+
+export type MutationUpsertExoticUserArgs = {
+  upsert: ExoticUserUpsertInput;
+  where: ExoticUserWhereUniqueInput;
 };
 
 /** An object with an ID */
@@ -2143,6 +2793,14 @@ export type Query = {
   cars: Array<Car>;
   /** Retrieve multiple cars using the Relay connection interface */
   carsConnection: CarConnection;
+  /** Retrieve a single exoticUser */
+  exoticUser?: Maybe<ExoticUser>;
+  /** Retrieve document version */
+  exoticUserVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple exoticUsers */
+  exoticUsers: Array<ExoticUser>;
+  /** Retrieve multiple exoticUsers using the Relay connection interface */
+  exoticUsersConnection: ExoticUserConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
   /** Retrieve a single scheduledOperation */
@@ -2239,6 +2897,44 @@ export type QueryCarsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
   where?: InputMaybe<CarWhereInput>;
+};
+
+
+export type QueryExoticUserArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: ExoticUserWhereUniqueInput;
+};
+
+
+export type QueryExoticUserVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryExoticUsersArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ExoticUserOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<ExoticUserWhereInput>;
+};
+
+
+export type QueryExoticUsersConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ExoticUserOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<ExoticUserWhereInput>;
 };
 
 
@@ -2814,7 +3510,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Car;
+export type ScheduledOperationAffectedDocument = Asset | Car | ExoticUser;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -4217,3 +4913,10 @@ export type GetCarBySlugQueryVariables = Exact<{
 
 
 export type GetCarBySlugQuery = { __typename?: 'Query', car?: { __typename?: 'Car', id: string, brand: Brand, model: string, slug: string, brandImage: { __typename?: 'Asset', url: string }, thumb: { __typename?: 'Asset', url: string }, rent: { __typename?: 'Rent', amount: number, per: string }, colors: Array<{ __typename?: 'CarColor', color: string, image: { __typename?: 'Asset', url: string } }> } | null };
+
+export type CreateExoticUserMutationVariables = Exact<{
+  data: ExoticUserCreateInput;
+}>;
+
+
+export type CreateExoticUserMutation = { __typename?: 'Mutation', user?: { __typename?: 'ExoticUser', id: string, email: string } | null };
