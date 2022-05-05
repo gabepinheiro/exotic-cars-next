@@ -1,6 +1,6 @@
 import { HTMLAttributes, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { signIn as signInNextAuth } from 'next-auth/react'
+import { signIn as signInNextAuth, SignInResponse } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {
@@ -50,15 +50,23 @@ export const Form = ({
 
       toast.success(result.message)
       router.replace('/sign-in')
+      return
     }
 
-    try {
-      await signInNextAuth('credentials', { redirect: false, ...data })
-      toast.success('Autenticado com sucesso!')
-      router.replace('/')
-    } catch (error) {
+    const res = await signInNextAuth(
+      'credentials',
+      { email: data.email, redirect: false },
+    )
+
+    const { error } = res! as SignInResponse
+
+    if (error) {
       console.log(error)
+      return toast.error(error)
     }
+
+    toast.success('Autenticado com sucesso!')
+    router.replace('/')
   }
 
   useEffect(() => {

@@ -4920,3 +4920,10 @@ export type CreateExoticUserMutationVariables = Exact<{
 
 
 export type CreateExoticUserMutation = { __typename?: 'Mutation', user?: { __typename?: 'ExoticUser', id: string, email: string } | null };
+
+export type GetUserByEmailQueryVariables = Exact<{
+  email: Scalars['String'];
+}>;
+
+
+export type GetUserByEmailQuery = { __typename?: 'Query', user?: { __typename?: 'ExoticUser', name: string, email: string } | null };

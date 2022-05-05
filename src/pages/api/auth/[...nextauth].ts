@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
+import { client, GetUserByEmailQuery, GET_USER_BY_EMAIL } from '~/graphql'
 
 export default NextAuth({
   providers: [
@@ -18,11 +19,16 @@ export default NextAuth({
 
         const { email } = credentials
 
-        if (email) {
-          return { email, name: 'Gabe' }
+        const { user } = await client.request<GetUserByEmailQuery>(
+          GET_USER_BY_EMAIL, {
+            email,
+          })
+
+        if (!user) {
+          throw new Error('User not found')
         }
 
-        return null
+        return { email: user.email, name: user.name }
       },
     }),
   ],

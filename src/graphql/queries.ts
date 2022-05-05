@@ -62,3 +62,12 @@ export const CREATE_USER = gql`
     }
   }
 `
+
+export const GET_USER_BY_EMAIL = gql`
+  query getUserByEmail ($email: String!) {
+    user: exoticUser (where: { email: $email }, stage: DRAFT) {
+      name
+      email
+    }
+  }
+`
